@@ -19,7 +19,7 @@ class CreateVarificationsTable extends Migration
             $table->string('vill');
             $table->string('post_code');
             $table->string('upozila');
-            $table->string('divison');
+            $table->integer('district_id')->unsigned();
             $table->string('lib_foundtaion_year');
             $table->text('lib_description');
             $table->text('asset_description');

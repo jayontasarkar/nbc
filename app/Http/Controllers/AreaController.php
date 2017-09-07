@@ -18,4 +18,11 @@ class AreaController extends Controller
 
         return view('areas.index', compact('areas'));
     }
+
+    public function show(Area $area)
+    {
+    	$area->load('verifications');
+
+    	return view('areas.show', compact('area'));
+    }
 }

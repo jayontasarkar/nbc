@@ -12,4 +12,9 @@ class Area extends Model
     protected $fillable = [
     	'name', 'tag'
     ];
+
+    public function verifications()
+    {
+    	return $this->hasMany(Varification::class, 'district_id');
+    }
 }

@@ -8,10 +8,12 @@
 				<div class="row">
 					@foreach($chunk as $division)
 						<div class="col-md-3">
-							<h3><a href="#"> <span class="text-muted">{{ $division->tag }} বিভাগ</span> </a></h3>
+							<h3><a href="#"> <span class="text-muted">
+								{{ $division->tag }} বিভাগ</span> </a>
+							</h3>
 							@foreach($division->children as $district)
 								<h5>
-									<a href="#">
+									<a href="{{ route('areas.show', [$district]) }}">
 										{{ $district->tag }} জেলা
 									</a>
 								</h5>
