@@ -1,3 +1,5 @@
+@inject('areas', 'App\Services\AreaService')
+
 @extends('layouts.app')
 
 @section('content')
@@ -72,15 +74,27 @@
                                 @endif
                             </div>
                         </div>
-                        <div class="form-group{{ $errors->has('') ? ' has-error' : '' }}">
-                            <label for="divison" class="col-md-4 control-label">জেলা </label>
+                        <div class="form-group{{ $errors->has('district_id') ? ' has-error' : '' }}">
+                            <label for="district_id" class="col-md-4 control-label">জেলা </label>
 
                             <div class="col-md-6">
-                                <input id="divisondivison" type="text" class="form-control" name="divison" value="{{ old('divison') }}" required autofocus>
+                                <select name="district_id" id="select2" class="select2 form-control">
+                                    @foreach($areas->get() as $division)
+                                        <optgroup label="{{ $division->tag }} বিভাগ">
+                                            @if(count($division->children) > 0)
+                                                @foreach($division->children as $district)
+                                                    <option value="{{ $district->id }}"
+                                                        {{ Request::input('district_id') == $district->id ? 'selected' : '' }}
+                                                    >{{ $district->tag }} জেলা</option>
+                                                @endforeach
+                                            @endif
+                                        </optgroup>
+                                    @endforeach
+                                </select>
 
-                                @if ($errors->has(''))
+                                @if ($errors->has('district_id'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('') }}</strong>
+                                        <strong>{{ $errors->first('district_id') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -297,3 +311,9 @@
     </div>
 </div>
 @endsection
+
+@section('script')
+<script type="text/javascript">
+  $('select').select2();
+</script>
+@stop
