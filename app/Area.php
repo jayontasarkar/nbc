@@ -10,11 +10,11 @@ class Area extends Model
     use NodeTrait;
 
     protected $fillable = [
-    	'name', 'tag'
+        'name', 'tag'
     ];
 
     public function verifications()
     {
-    	return $this->hasMany(Varification::class, 'district_id');
+        return $this->hasMany(Varification::class, 'district_id');
     }
 }

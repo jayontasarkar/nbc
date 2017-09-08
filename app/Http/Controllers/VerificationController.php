@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Varification;
 
-class VarificationController extends Controller
+class VerificationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -24,7 +24,7 @@ class VarificationController extends Controller
      */
     public function create()
     {
-        //
+        return view('verifications.create');
     }
 
     /**
@@ -35,8 +35,10 @@ class VarificationController extends Controller
      */
     public function store(Request $request)
     {
-        Varification::create($request->all());
-        return redirect('/');
+        $verification = Varification::create($request->all());
+
+        return redirect()->route('verifications.show', [$verification])
+            ->withSuccess('নতুন যাচাই/পরিদর্শন ফরম তৈরী করা হয়েছে');
     }
 
     /**
@@ -45,9 +47,11 @@ class VarificationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Varification $verification)
     {
-        //
+        $verification->load('area');
+
+        return view('verifications.show', compact('verification'));
     }
 
     /**

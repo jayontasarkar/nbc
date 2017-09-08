@@ -44,9 +44,25 @@
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
                         @guest
-                            <li><a href="{{ route('login') }}">Login</a></li>
-                            <li><a href="{{ route('register') }}">Register</a></li>
+
                         @else
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                    গ্রন্থাগার যাচাই/পরিদর্শন <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        <a href="{{ route('areas.index') }}">যাচাই/পরিদর্শনের তালিকা</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('verifications.create') }}">নতুন যাচাই/পরিদর্শন ফরম</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('verifications.search') }}">গ্রন্থাগার সার্চ করুন</a>
+                                    </li>
+                                </ul>
+                            </li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     {{ Auth::user()->name }} <span class="caret"></span>
@@ -57,7 +73,7 @@
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                            Logout
+                                            লগ আউট
                                         </a>
 
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -73,6 +89,18 @@
         </nav>
         <div class="container">
             <div class="row">
+                @if(session()->has('success'))
+                    <div class="alert alert-success">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        {{ session()->get('success') }}
+                    </div>
+                @endif
+                @if(session()->has('warning'))
+                    <div class="alert alert-warning">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        {{ session()->get('warning') }}
+                    </div>
+                @endif
                 @yield('content')
             </div>
         </div>

@@ -14,7 +14,7 @@
 							@foreach($division->children as $district)
 								<h5>
 									<a href="{{ route('areas.show', [$district]) }}">
-										{{ $district->tag }} জেলা
+										{{ $district->tag }} জেলা ({{ entobn($district->verifications->count()) }})
 									</a>
 								</h5>
 							@endforeach
@@ -27,4 +27,12 @@
 	</div>
 </div>
 
+@endsection
+
+@section('script')
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('.select2').select2();
+		});
+	</script>
 @endsection
