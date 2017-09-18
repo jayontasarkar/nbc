@@ -3,6 +3,10 @@
 @section('content')
 
 <div class="panel panel-default">
+	<div class="panel-heading" style="font-size: large;">
+		সারাদেশব্যাপী বেসরকারি গ্রন্থাগারের তালিকা
+		<a href="#" class="pull-right btn btn-info">সারাদেশের গ্রন্থাগারের তালিকা</a>
+	</div>
 	<div class="panel-body">
 			@foreach($areas->chunk(4) as $chunk)
 				<div class="row">
@@ -14,7 +18,7 @@
 							@foreach($division->children as $district)
 								<h5>
 									<a href="{{ route('areas.show', [$district]) }}">
-										{{ $district->tag }} জেলা ({{ entobn($district->verifications->count()) }})
+										{{ $district->tag }} জেলা ({{ entobn($district->applications->count()) }})
 									</a>
 								</h5>
 							@endforeach

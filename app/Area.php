@@ -13,8 +13,15 @@ class Area extends Model
         'name', 'tag'
     ];
 
-    public function verifications()
+    public function applications()
     {
-        return $this->hasMany(Varification::class, 'district_id');
+        return $this->hasMany(Application::class, 'area_id');
+    }
+
+    public function countApplicationsInUpozilla()
+    {
+        $Ids = $this->children->pluck('id');
+
+        return $this->applications()->whereIn('area_id', $Ids)->count();
     }
 }

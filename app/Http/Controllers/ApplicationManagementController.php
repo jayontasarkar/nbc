@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Varification;
+use App\Application;
 
-class VerificationController extends Controller
+class ApplicationManagementController extends Controller
 {
     /**
      * Display a listing of the resource.

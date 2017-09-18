@@ -31,9 +31,15 @@ class CreateVarificationsTable extends Migration
             $table->tinyInteger('committee');
             $table->string('libarian_name');
             $table->string('libarian_qualification');
+            $table->string('librarian_mobile_no');
             $table->string('chairman_name');
             $table->string('chairman_mobile');
+            $table->string('gs_name');
+            $table->string('gs_mobile_no');
+            $table->string('lib_registration_no')->nullable();
+            $table->string('registration_provider')->nullable();
             $table->text('comments');
+            $table->string('picture')->nullable();
             $table->timestamps();
         });
     }

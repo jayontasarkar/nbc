@@ -10,7 +10,9 @@ class Varification extends Model
         'libraby_name','vill','post_code','upozila','district_id','lib_foundtaion_year',
         'lib_description','asset_description','no_of_books','visitors_per_day',
         'no_of_newspapers','opening_time','opening_days_week','committee','libarian_name',
-        'libarian_qualification','chairman_name','chairman_mobile','comments'
+        'librarian_mobile_no', 'libarian_qualification','chairman_name','chairman_mobile',
+        'lib_registration_no', 'registration_provider', 'gs_name', 'gs_mobile_no', 'picture',
+        'comments'
     ];
 
     public function area()

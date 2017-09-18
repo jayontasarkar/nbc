@@ -2,12 +2,20 @@
 
 @extends('layouts.app')
 
+@section('style')
+    <style>
+        .select optgroup option {
+            padding-left: 20px;
+        }
+    </style>
+@endsection
+
 @section('content')
 <div class="container">
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
-                <div class="panel-heading">বেসরকারি পাঠাগার যাচাই/পরিদর্শন  ফরম </div>
+                <div class="panel-heading">বেসরকারি গ্রন্থাগার যাচাই/পরিদর্শন ফরম</div>
 
                 <div class="panel-body">
                     @if (session('status'))
@@ -158,7 +166,7 @@
                             </div>
                         </div>
                         <div class="form-group{{ $errors->has('') ? ' has-error' : '' }}">
-                            <label for="" class="col-md-4 control-label">গ্রন্থাগারে গড়ে প্রতিদিন কতজন পাঠক আসে?</label>
+                            <label for="" class="col-md-4 control-label">গড়ে প্রতিদিন কতজন পাঠক আসে?</label>
 
                             <div class="col-md-6">
                                 <input id="" type="number" class="form-control" name="visitors_per_day" value="{{ old('') }}" required autofocus>
@@ -210,7 +218,7 @@
                             </div>
                         </div>
                         <div class="form-group{{ $errors->has('') ? ' has-error' : '' }}">
-                            <label for="" class="col-md-4 control-label">গ্রন্থগারে গণতন্ত্র, পরিচালনা কমিটি আছে কি না? </label>
+                            <label for="" class="col-md-4 control-label">গণতন্ত্র, পরিচালনা কমিটি আছে কি না? </label>
 
                             <div class="col-md-6">
                                 <div class="radio">
@@ -255,6 +263,19 @@
                                 @endif
                             </div>
                         </div>
+                        <div class="form-group{{ $errors->has('librarian_mobile_no') ? ' has-error' : '' }}">
+                            <label for="librarian_mobile_no" class="col-md-4 control-label">মোবাইল নম্বর</label>
+
+                            <div class="col-md-6">
+                                <input id="librarian_mobile_no" type="text" class="form-control" name="librarian_mobile_no" value="{{ old('librarian_mobile_no') }}" required autofocus>
+
+                                @if ($errors->has('librarian_mobile_no'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('librarian_mobile_no') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
                         <div class="form-group{{ $errors->has('') ? ' has-error' : '' }}">
                             <label for="" class="col-md-4 control-label">সভাপতির নাম </label>
 
@@ -269,7 +290,7 @@
                             </div>
                         </div>
                         <div class="form-group{{ $errors->has('') ? ' has-error' : '' }}">
-                            <label for="" class="col-md-4 control-label">সভাপতির মোবাইল নম্বর</label>
+                            <label for="" class="col-md-4 control-label">মোবাইল নম্বর</label>
 
                             <div class="col-md-6">
                                 <input id="" type="text" class="form-control" name="chairman_mobile" value="{{ old('') }}" required autofocus>
@@ -277,6 +298,58 @@
                                 @if ($errors->has(''))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="form-group{{ $errors->has('gs_name') ? ' has-error' : '' }}">
+                            <label for="gs_name" class="col-md-4 control-label">সাধারণ সম্পাদকের নাম</label>
+
+                            <div class="col-md-6">
+                                <input id="" type="text" class="form-control" name="gs_name" value="{{ old('gs_name') }}" required autofocus>
+
+                                @if ($errors->has('gs_name'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('gs_name') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="form-group{{ $errors->has('gs_mobile_no') ? ' has-error' : '' }}">
+                            <label for="gs_mobile_no" class="col-md-4 control-label">মোবাইল নম্বর</label>
+
+                            <div class="col-md-6">
+                                <input id="gs_mobile_no" type="text" class="form-control" name="gs_mobile_no" value="{{ old('gs_mobile_no') }}" required autofocus>
+
+                                @if ($errors->has(''))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="form-group{{ $errors->has('lib_registration_no') ? ' has-error' : '' }}">
+                            <label for="lib_registration_no" class="col-md-4 control-label">গ্রন্থাগারের রেজিস্ট্রেশন নং</label>
+
+                            <div class="col-md-6">
+                                <input id="lib_registration_no" type="text" class="form-control" name="lib_registration_no" value="{{ old('lib_registration_no') }}" required autofocus>
+
+                                @if ($errors->has('lib_registration_no'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('lib_registration_no') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="form-group{{ $errors->has('registration_provider') ? ' has-error' : '' }}">
+                            <label for="registration_provider" class="col-md-4 control-label">রেজিস্ট্রেশন প্রদানকারী প্রতিষ্ঠান</label>
+
+                            <div class="col-md-6">
+                                <input id="registration_provider" type="text" class="form-control" name="registration_provider" value="{{ old('registration_provider') }}" required autofocus>
+
+                                @if ($errors->has('registration_provider'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('registration_provider') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -297,6 +370,19 @@
                             </div>
                         </div>
 
+                        <div class="form-group{{ $errors->has('picture') ? ' has-error' : '' }}">
+                            <label for="picture" class="col-md-4 control-label">গ্রন্থাগারের ছবি</label>
+
+                            <div class="col-md-6">
+                                <input type="file" name="picture" id="picture">
+                                @if ($errors->has('picture'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('picture') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        <hr>
                         <div class="form-group">
                             <div class="col-md-8 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
