@@ -9,7 +9,7 @@
                     যাচাই/পরিদর্শনকৃত গ্রন্থাগার সার্চ করুন
                 </div>
                 <div class="panel-body">
-                    <form action="{{ route('verifications.postsearch') }}" method="POST" role="form">
+                    <form action="#" method="POST" role="form">
                         {{ csrf_field() }}
                         <div class="form-group">
                             <label for="search">গ্রন্থাগার সিলেক্ট করুন</label>
@@ -18,10 +18,10 @@
                                     @if(count($area->children))
                                         @foreach($area->children as $child)
                                         <optgroup label="{{ $child->tag }}">
-                                            @if(count($child->verifications))
-                                                @foreach($child->verifications as $verification)
-                                                    <option value="{{ $verification->id }}">
-                                                        {{ $verification->libraby_name }} ({{ $verification->upozila }})
+                                            @if(count($child->applications))
+                                                @foreach($child->applications as $application)
+                                                    <option value="{{ $application->id }}">
+                                                        {{ $application->library_name }} ({{ $application->library_address }})
                                                     </option>
                                                 @endforeach
                                             @endif

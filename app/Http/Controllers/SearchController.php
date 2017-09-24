@@ -10,7 +10,7 @@ class SearchController extends Controller
 {
     public function verifications()
     {
-        $areas = Area::with('verifications')->get()->toTree();
+        $areas = Area::with('applications')->get()->toTree();
 
         return view('search.index', compact('areas'));
     }

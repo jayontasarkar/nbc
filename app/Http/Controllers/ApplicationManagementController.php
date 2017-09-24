@@ -47,11 +47,11 @@ class ApplicationManagementController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Varification $verification)
+    public function show(Application $application)
     {
-        $verification->load('area');
+        $application->load('area');
 
-        return view('verifications.show', compact('verification'));
+        return view('admin.applications.show', compact('application'));
     }
 
     /**

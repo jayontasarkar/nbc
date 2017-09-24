@@ -1,22 +1,22 @@
 <!DOCTYPE html>
-<html lang="{{ app()->getLocale() }}">
+<html lang="<?php echo e(app()->getLocale()); ?>">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title><?php echo e(config('app.name', 'Laravel')); ?></title>
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="<?php echo e(asset('css/app.css')); ?>" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.4.2/css/buttons.dataTables.min.css">
-    @yield('style')
+    <?php echo $__env->yieldContent('style'); ?>
 </head>
 <body>
     <div id="app">
@@ -33,8 +33,9 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ Auth::check() ? 'সারাদেশব্যাপী বেসরকারী গ্রন্থাগারের তালিকা' : config('app.name', 'Laravel') }}
+                    <a class="navbar-brand" href="<?php echo e(url('/')); ?>">
+                        <?php echo e(Auth::check() ? 'সারাদেশব্যাপী বেসরকারী গ্রন্থাগারের তালিকা' : config('app.name', 'Laravel')); ?>
+
                     </a>
                 </div>
 
@@ -47,13 +48,13 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
-                        @guest
+                        <?php if(auth()->guard()->guest()): ?>
                             <li>
-                                <a href="{{ route('applications.create') }}">
+                                <a href="<?php echo e(route('applications.create')); ?>">
                                     অনুদানের আবেদনপত্র
                                 </a>
                             </li>
-                        @else
+                        <?php else: ?>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     গ্রন্থাগার যাচাই/পরিদর্শন <span class="caret"></span>
@@ -61,61 +62,64 @@
 
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
-                                        <a href="{{ route('areas.index') }}">যাচাই/পরিদর্শনের তালিকা</a>
+                                        <a href="<?php echo e(route('areas.index')); ?>">যাচাই/পরিদর্শনের তালিকা</a>
                                     </li>
                                     <li>
-                                        <a href="{{ route('verifications.create') }}">নতুন যাচাই/পরিদর্শন ফরম</a>
+                                        <a href="<?php echo e(route('verifications.create')); ?>">নতুন যাচাই/পরিদর্শন ফরম</a>
                                     </li>
                                     <li>
-                                        <a href="{{ route('verifications.search') }}">গ্রন্থাগার সার্চ করুন</a>
+                                        <a href="<?php echo e(route('verifications.search')); ?>">গ্রন্থাগার সার্চ করুন</a>
                                     </li>
                                 </ul>
                             </li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                    <?php echo e(Auth::user()->name); ?> <span class="caret"></span>
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
-                                        <a href="{{ route('logout') }}"
+                                        <a href="<?php echo e(route('logout')); ?>"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                             লগ আউট
                                         </a>
 
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
+                                        <form id="logout-form" action="<?php echo e(route('logout')); ?>" method="POST" style="display: none;">
+                                            <?php echo e(csrf_field()); ?>
+
                                         </form>
                                     </li>
                                 </ul>
                             </li>
-                        @endguest
+                        <?php endif; ?>
                     </ul>
                 </div>
             </div>
         </nav>
         <div class="container">
             <div class="row">
-                @if(session()->has('success'))
+                <?php if(session()->has('success')): ?>
                     <div class="alert alert-success">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                        {{ session()->get('success') }}
+                        <?php echo e(session()->get('success')); ?>
+
                     </div>
-                @endif
-                @if(session()->has('warning'))
+                <?php endif; ?>
+                <?php if(session()->has('warning')): ?>
                     <div class="alert alert-warning">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                        {{ session()->get('warning') }}
+                        <?php echo e(session()->get('warning')); ?>
+
                     </div>
-                @endif
-                @yield('content')
+                <?php endif; ?>
+                <?php echo $__env->yieldContent('content'); ?>
             </div>
         </div>
     </div>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="<?php echo e(asset('js/app.js')); ?>"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
@@ -127,6 +131,6 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
     <script src="//cdn.datatables.net/buttons/1.4.2/js/buttons.html5.min.js"></script>
     <script src="//cdn.datatables.net/buttons/1.4.2/js/buttons.print.min.js"></script>
-    @yield('script')
+    <?php echo $__env->yieldContent('script'); ?>
 </body>
 </html>
